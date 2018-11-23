@@ -1,0 +1,77 @@
+#! /usr/bin/vvp
+:ivl_version "10.2 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "system";
+:vpi_module "vhdl_sys";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x557408ab3b60 .scope module, "main_test" "main_test" 2 3;
+ .timescale -9 -12;
+v0x557408ad4a80_0 .var "Add_in", 31 0;
+v0x557408ad4bb0_0 .net "Add_out", 31 0, L_0x557408ae5150;  1 drivers
+v0x557408ad4c70_0 .net "Ins_address", 31 0, L_0x557408ad4f90;  1 drivers
+v0x557408ad4d60_0 .var "PCSrc", 0 0;
+v0x557408ad4e50_0 .var "adr_branch", 31 0;
+S_0x557408ab3ce0 .scope module, "uut" "AddrGenerator" 2 17, 3 1 0, S_0x557408ab3b60;
+ .timescale 0 0;
+    .port_info 0 /INPUT 32 "adr_branch"
+    .port_info 1 /INPUT 32 "Add_in"
+    .port_info 2 /OUTPUT 32 "Add_out"
+    .port_info 3 /OUTPUT 32 "Ins_address"
+    .port_info 4 /INPUT 1 "PCSrc"
+L_0x557408ae5150 .functor BUFZ 32, L_0x557408ae5080, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v0x557408ad4420_0 .net "Add_in", 31 0, v0x557408ad4a80_0;  1 drivers
+v0x557408ad4500_0 .net "Add_out", 31 0, L_0x557408ae5150;  alias, 1 drivers
+v0x557408ad45c0_0 .net "Add_out_temp", 31 0, L_0x557408ae5080;  1 drivers
+v0x557408ad46b0_0 .net "Ins_address", 31 0, L_0x557408ad4f90;  alias, 1 drivers
+v0x557408ad4770_0 .net "PCSrc", 0 0, v0x557408ad4d60_0;  1 drivers
+v0x557408ad4860_0 .net "adr_branch", 31 0, v0x557408ad4e50_0;  1 drivers
+o0x7fa45d80e288 .functor BUFZ 1, C4<z>; HiZ drive
+v0x557408ad4930_0 .net "hit", 0 0, o0x7fa45d80e288;  0 drivers
+S_0x557408ab3e60 .scope module, "pcAdder" "PcAdder" 3 16, 4 1 0, S_0x557408ab3ce0;
+ .timescale -9 -12;
+    .port_info 0 /OUTPUT 32 "newv"
+    .port_info 1 /INPUT 32 "old"
+L_0x7fa45d7c5018 .functor BUFT 1, C4<00000000000000000000000000000100>, C4<0>, C4<0>, C4<0>;
+v0x557408ab4030_0 .net/2u *"_s0", 31 0, L_0x7fa45d7c5018;  1 drivers
+v0x557408ad3cd0_0 .net "newv", 31 0, L_0x557408ae5080;  alias, 1 drivers
+v0x557408ad3db0_0 .net "old", 31 0, v0x557408ad4a80_0;  alias, 1 drivers
+L_0x557408ae5080 .arith/sum 32, v0x557408ad4a80_0, L_0x7fa45d7c5018;
+S_0x557408ad3ed0 .scope module, "pcMux" "PcMux" 3 15, 5 1 0, S_0x557408ab3ce0;
+ .timescale -9 -12;
+    .port_info 0 /OUTPUT 32 "res"
+    .port_info 1 /INPUT 32 "a"
+    .port_info 2 /INPUT 32 "b"
+    .port_info 3 /INPUT 1 "sel"
+v0x557408ad40a0_0 .net "a", 31 0, L_0x557408ae5080;  alias, 1 drivers
+v0x557408ad4160_0 .net "b", 31 0, v0x557408ad4e50_0;  alias, 1 drivers
+v0x557408ad4220_0 .net "res", 31 0, L_0x557408ad4f90;  alias, 1 drivers
+v0x557408ad42e0_0 .net "sel", 0 0, v0x557408ad4d60_0;  alias, 1 drivers
+L_0x557408ad4f90 .functor MUXZ 32, v0x557408ad4e50_0, L_0x557408ae5080, v0x557408ad4d60_0, C4<>;
+    .scope S_0x557408ab3b60;
+T_0 ;
+    %delay 10000, 0;
+    %pushi/vec4 2, 0, 32;
+    %store/vec4 v0x557408ad4a80_0, 0, 32;
+    %pushi/vec4 10, 0, 32;
+    %store/vec4 v0x557408ad4e50_0, 0, 32;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v0x557408ad4d60_0, 0, 1;
+    %delay 100000, 0;
+    %end;
+    .thread T_0;
+    .scope S_0x557408ab3b60;
+T_1 ;
+    %vpi_call 2 36 "$dumpfile", "./addrGenerator_test.vcd" {0 0 0};
+    %vpi_call 2 37 "$dumpvars" {0 0 0};
+    %end;
+    .thread T_1;
+# The file index is used to find the file name in the following table.
+:file_names 6;
+    "N/A";
+    "<interactive>";
+    "addrGenerator_test.v";
+    "addrGenerator.v";
+    "pcAdder/pcAdder.v";
+    "pcMux/pcMux.v";

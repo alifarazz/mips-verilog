@@ -1,0 +1,45 @@
+$date
+	Tue Oct 23 23:21:41 2018
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module main_test $end
+$var wire 32 ! res [31:0] $end
+$var reg 32 " a [31:0] $end
+$var reg 32 # b [31:0] $end
+$var reg 1 $ sel $end
+$scope module uut $end
+$var wire 32 % a [31:0] $end
+$var wire 32 & b [31:0] $end
+$var wire 1 $ sel $end
+$var wire 32 ' res [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx '
+bx &
+bx %
+x$
+bx #
+bx "
+bx !
+$end
+#10000
+b10 !
+b10 '
+0$
+b10 #
+b10 &
+b1 "
+b1 %
+#20000
+b1 !
+b1 '
+1$
+#30000

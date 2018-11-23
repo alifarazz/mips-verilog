@@ -1,0 +1,36 @@
+$date
+	Tue Oct 23 20:40:30 2018
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module main_test $end
+$var wire 32 ! data [31:0] $end
+$var reg 32 " addr [31:0] $end
+$scope module uut $end
+$var wire 32 # addr [31:0] $end
+$var wire 32 $ data [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+bx $
+bx #
+bx "
+bx !
+$end
+#10000
+b1 !
+b1 $
+b0 "
+b0 #
+#20000
+b10 !
+b10 $
+b100 "
+b100 #
+#30000
