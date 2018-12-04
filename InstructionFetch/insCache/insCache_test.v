@@ -3,7 +3,7 @@
 module main_test;
 
    // Inputs
-   reg clk, resetn=1;
+   reg clk, rstn=1;
    reg [31:0] iaddr;
    reg [127:0] imem_in;
    
@@ -15,32 +15,45 @@ module main_test;
    
    // Instantiate the Unit Under Test (UUT)
    insCache uut(clk,
-		resetn,
-		iaddr,
-		imem_in,
-		ohit,
-		oins
-		);
+                rstn,
+                iaddr,
+                imem_in,
+                ohit,
+                oins);
 
    initial begin
       /// Initialize Inputs
       #10;
-      resetn = 0;
-      #10;
-      iaddr = 7;
-      #90;
-      imem_in = {32'hDEADBEEF ,32'hABABABAB 
-		 ,32'hCDCDCDCD, 32'hEFEFEFEF};
-      #190;
-      iaddr = 0;
+      rstn = 0;
       
+      #10;
+
+      iaddr = 7;
+      
+      #90;
+      imem_in = {32'hDEADBEEF ,32'hABABABAB,
+                 32'hCDCDCDCD, 32'hEFEFEFEF};
+      #180;
+      iaddr = 0;
+
+      #50;
+      iaddr = 4;
+
+      #50;
+      iaddr = 8;
+
+      #50;
+      iaddr = 12;
+
+      #50;
+      iaddr = 16;
       
    end
 
    initial begin
       clk = 0;
-      for (i = 0; i < 20; i = i + 1)
-	#25 clk = ~clk;
+      for (i = 0; i < 64; i = i + 1)
+   #25 clk = ~clk;
    end
 
 
