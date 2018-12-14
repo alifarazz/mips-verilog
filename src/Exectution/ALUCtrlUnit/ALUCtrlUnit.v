@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module oALUctrlUnit(ifunct,
+module ALUctrlUnit(ifunct,
                    iALUOp,
                    oALUctrl);
     input [5:0] ifunct;
