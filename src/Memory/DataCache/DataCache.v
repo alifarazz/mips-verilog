@@ -18,7 +18,7 @@ module DataCache(clk,
    input iSigMemRead, iSigMemWrite;  // shoud I read/write?
    output reg ohit;  // R: data is available
    output reg [31:0] omem_addr;  // W: address to read/write 
-                                 // data(omem_write_data) from RAM
+                                 // data(omem_write_data) from/to RAM
    output reg [31:0] omem_write_data;  // W: data to write to RAM, in omem_addr
    output reg [31:0] odata_read;  // R: data read from RAM, using iaddr
    

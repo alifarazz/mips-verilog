@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module IFIDPipelineReg(Adder_in,
+module IFID(Adder_in,
                    Instruction_in,
                    Adder_out,
                    Instruction_out,

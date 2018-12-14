@@ -14,33 +14,33 @@ module main_test;
    
    integer i;
    // Instantiate the Unit Under Test (UUT)
-    IFIDPipelineReg uut(Adder_in,
-                   Instruction_in,
-                   Adder_out,
-                   Instruction_out,
-                   hit,
-                   clk,
-                   rstn);
+   IFID uut(Adder_in,
+                       Instruction_in,
+                       Adder_out,
+                       Instruction_out,
+                       hit,
+                       clk,
+                       rstn);
    initial begin
       /// Initialize Inputs
       #10;
       rstn = 0;
-      #10;
+      #50;
       Adder_in = 2;
       Instruction_in = 3;
       hit = 1;
-      #10;
+      #50;
       Adder_in = 200;
       Instruction_in = 300;
       hit = 0;
-      #10;
+      #50;
       
    end
 
    initial begin
       clk = 0;
       for (i = 0; i < 20; i = i + 1)
-	#2 clk = ~clk;
+	#25 clk = ~clk;
    end
 
    initial begin
