@@ -1,43 +1,26 @@
 # change application name here (executable output name)
-SUBDIRS=pcReg insCache addrGenerator
-
-TARGET=pcReg
+TARGET=out
 
 ANALAYZER=gtkwave
 
-SRCS = $(wildcard *.v)
+SRCS = $(wildcard *.v) "AddrGenerator/AddrGenerator.v" "AddrGenerator/PCAdder/PCAdder.v" "AddrGenerator/PCMux/PCMux.v" "InsCache/InsCache.v" "PCReg/PCReg.v"
 
-# compiler, assembler, linker flags
-# FLAGS=
+.PHONY: default all $(TARGET) clean run
 
-# source files
-
-# object files
-# CCOBJS  = $(patsubst %.c, %_c.o, $(CCSRCS))
-# ASMOBJS = $(patsubst %.asm, %_asm.o, $(ASMSRCS))
-# OBJS = $(CCOBJS) $(ASMOBJS)
-
-.PHONY: default all clean $(SUBDIRS) run
-
-default: $(SUBDIRS)
+default: $(TARGET)
 
 all: default
 
-$(SUBDIRS):
-	$(MAKE) --directory=$@
-
-$(TARGET): $(SUBDIRS)
+$(TARGET):
+	printf "%s" $(SRCS)
 	iverilog $(SRCS) -o $(TARGET).o
 	vvp $(TARGET).o
 
-run:
+
+run: $(TARGET)
 	$(ANALAYZER) $(wildcard *.vcd)
 
 
 clean:
-	for d in $(SUBDIRS);			\
-	do					\
-	  $(MAKE) clean --directory=$$d;	\
-	done
 	rm *.vcd
 	rm *.o
