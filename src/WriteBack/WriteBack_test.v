@@ -8,12 +8,11 @@ module main_test;
    reg [31:0] iread_from_ram, ialu_result;
 
    wire [31:0] odata2write2regfile;
-   wire oSig_RegfileWrite;
 
    integer    i;
 
    // Instantiate the Unit Under Test (UUT)
-   MemoryStage uut(
+   WriteBack uut(
                   clk,
                   rstn,
                   iSig_regfile_write,
@@ -21,7 +20,6 @@ module main_test;
                   iread_from_ram,
                   ialu_result,
                   odata2write2regfile,
-                  oSig_RegfileWrite
                   );
 
    initial begin
