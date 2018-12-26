@@ -6,6 +6,7 @@ module main_test;
    reg iSIG_PCSrc;
    reg [127:0] imem_in;
    reg [31:0] iaddr4branch;
+   reg icacheHit;
 
    // Outputs
    wire [31:0] oins, obranch_adder;
@@ -18,6 +19,7 @@ InsFetch uut(
                iSIG_PCSrc,
                imem_in,
                iaddr4branch,
+               icacheHit,
                obranch_adder,
                oins,
                clk,
@@ -28,10 +30,20 @@ InsFetch uut(
       #10;
       rstn = 0;
       #10;
+      icacheHit = 1;
       iSIG_PCSrc = 1;
       iaddr4branch = 0;
-      imem_in = 0;
-      #10;
+      imem_in = 90;
+      #250;
+      icacheHit = 1;
+      iSIG_PCSrc = 2;
+      iaddr4branch = 0;
+      imem_in = 80;
+      #250;
+      icacheHit = 0;
+      iSIG_PCSrc = 1;
+      iaddr4branch = 0;
+      imem_in = 88;
    end
 
    initial begin

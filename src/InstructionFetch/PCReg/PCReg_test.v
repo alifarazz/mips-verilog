@@ -4,7 +4,7 @@ module main_test;
 
    // Inputs
    reg [31:0] pc;
-   reg	      clk, rstn;
+   reg	      clk, rstn,hit;
    
    // Outputs
    wire [31:0] pcOut;
@@ -15,6 +15,7 @@ module main_test;
    // Instantiate the Unit Under Test (UUT)
    PCReg uut(pcOut,
 	     pc,
+        hit
 	     clk,
 	     rstn
 	      );
@@ -22,6 +23,7 @@ module main_test;
    initial begin
       /// Initialize Inputs
       #10 rstn = 1;
+      hit = 1;
       rstn = 0;
       pc = 0;
 

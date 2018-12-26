@@ -11,6 +11,7 @@ module MemoryStage(
                   oMemReadData,
                   oALUresult,
                   oBranchAdder_result,
+                  ocacheHit,
                   oSig_PCSrc
                   );
 
@@ -26,14 +27,13 @@ module MemoryStage(
    output [31:0] oMemReadData, oALUresult;
    output [31:0] oBranchAdder_result;
    output oSig_PCSrc;
-
-   reg cachehit;
+   output ocachehit;
 
    DataCache(.clk(clk),
              .rstn(rstn),
              .iaddr(iALUresult),
              .idata_write(iregfile_read_data2), // 
-             .ohit(cachehit),  // cache hit
+             .ohit(ocachehit),  // cache hit
              .omem_addr(omem_addr), // incase of miss, read from the same palce as you read from cache
              .imem_in(iread_from_ram), // data read from RAM in case of miss
              .omem_write_data(iregfile_read_data2), // data to write to ram

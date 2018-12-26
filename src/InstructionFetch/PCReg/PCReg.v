@@ -1,11 +1,13 @@
-module PCReg(pcOut, pc, clk, rstn);
+module PCReg(pcOut, pc, ihit,clk, rstn);
    input [31:0] pc;
    input	clk, rstn;
+   input ihit;
    output reg [31:0] pcOut;
 
    always@(posedge clk)
      begin
-	pcOut = pc;
+      if (ihit)
+	     pcOut = pc;
      end
 
    always@(negedge rstn)

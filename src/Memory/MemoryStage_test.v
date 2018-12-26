@@ -16,6 +16,7 @@ module main_test;
    wire oALU_zero;
    wire [31:0] oALU_result, oregfile_read_2;
    wire [4:0] oreg_write_reg;
+   wire ocachehit;
 
 
    integer    i;
@@ -37,6 +38,7 @@ module main_test;
          oALU_zero,
          oALU_result,
          oregfile_read_2,
+         ocachehit,
          oreg_write_reg
          );
 
