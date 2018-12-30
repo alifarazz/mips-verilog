@@ -19,11 +19,12 @@ module PCReg(
 
    always@(posedge clk)
      begin
-      if (ihit) begin
-         if (!counter)
+      if (ihit)
+         if (counter)
+            pcOut = pc;
+         else
             counter = counter + 1;
-         pcOut = pc;
-      end else
+      else
          counter = 0;
      end
 
