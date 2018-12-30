@@ -1,0 +1,1 @@
+ InstructionFetch/InsCache.v:30 : add 'iaddr' to always block trigger conditions to force the cache to activate each cycle.

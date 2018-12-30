@@ -1,3 +1,0 @@
-CHECK & COMPLETE: Memory stage again
-FIGURE-OUT: writing and read to/from regfile (both from wb stage and decode stage) ::: jesus
-FIXME: memory-stage: why does it have oBranchAdder_result?
