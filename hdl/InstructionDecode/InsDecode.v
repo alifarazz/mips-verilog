@@ -40,7 +40,7 @@ module InsDecode(
                            .RegWrite(oSig_WB[0]));
    RegFile regFile(.rs(iins[25:21]),
                    .rt(iins[20:16]),
-                   .rd(iins[15:11]),
+                   .rd(iWriteReg),
                    .writedata(iWriteData2Reg),
                    .A(oRegFileRead1),
                    .B(oRegFileRead2),

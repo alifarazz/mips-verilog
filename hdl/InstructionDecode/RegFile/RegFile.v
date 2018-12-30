@@ -20,17 +20,17 @@ module RegFile(rs,
    integer i;
    
 initial begin
-	for (i = 0; i < 31; i = i + 1)
+	for (i = 0; i < 32; i = i + 1)
       content[i] = i;
 end
 
    always @(posedge clk) begin
+      if (regwrite) begin
+         if (rd != 0)
+            content[rd] = writedata;
       A = content[rs];
       B = content[rt];
-      if (regwrite) begin
-         content[rd] = writedata;
       end
-      content[0] = 0;
    end
     
 endmodule // main
