@@ -1,0 +1,132 @@
+[*]
+[*] GTKWave Analyzer v3.3.97 (w)1999-2018 BSI
+[*] Sun Dec 30 21:51:36 2018
+[*]
+[dumpfile] "/home/luce/Storage/DaneshGah/term5_97_mehr/z_lab arch/class/github/hdl/main_test.vcd"
+[dumpfile_mtime] "Sun Dec 30 21:44:52 2018"
+[dumpfile_size] 22306
+[savefile] "/home/luce/Storage/DaneshGah/term5_97_mehr/z_lab arch/class/github/hdl/session.gtkw"
+[timestart] 0
+[size] 1366 709
+[pos] -1 -1
+*-17.000000 200000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] main_test.
+[treeopen] main_test.uut.
+[sst_width] 217
+[signals_width] 323
+[sst_expanded] 1
+[sst_vpaned_height] 183
+@200
+-Fetch
+@28
+main_test.uut.insFetchStage.clk
+main_test.uut.insFetchStage.iSIG_PCSrc
+@22
+main_test.uut.insFetchStage.iaddr4branch[31:0]
+main_test.uut.insFetchStage.imem_in[127:0]
+@28
+main_test.uut.insFetchStage.iupdatepc
+@22
+main_test.uut.insFetchStage.obranch_adder[31:0]
+@28
+[color] 2
+main_test.uut.insFetchStage.ocacheHit
+@22
+main_test.uut.insFetchStage.oins[31:0]
+main_test.uut.insFetchStage.pcOut[31:0]
+main_test.uut.insFetchStage.pc[31:0]
+@28
+main_test.uut.insFetchStage.rstn
+main_test.uut.insFetchStage.insCache.counter[1:0]
+[color] 6
+main_test.uut.insFetchStage.pcReg.counter
+@200
+-
+-Ftch/DE
+@22
+main_test.uut.pipl_ifid.Adder_in[31:0]
+main_test.uut.pipl_ifid.Instruction_in[31:0]
+main_test.uut.pipl_ifid.Adder_out[31:0]
+main_test.uut.pipl_ifid.Instruction_out[31:0]
+@200
+-
+-Decode
+@28
+main_test.uut.insDecodeStage.clk
+main_test.uut.insDecodeStage.iSig_RegWrite
+@22
+main_test.uut.insDecodeStage.iWriteData2Reg[31:0]
+main_test.uut.insDecodeStage.iWriteReg[4:0]
+main_test.uut.insDecodeStage.iins[31:0]
+main_test.uut.insDecodeStage.oRegFileRead1[31:0]
+main_test.uut.insDecodeStage.oRegFileRead2[31:0]
+main_test.uut.insDecodeStage.oSig_EX[3:0]
+@28
+main_test.uut.insDecodeStage.oSig_MEM[2:0]
+main_test.uut.insDecodeStage.oSig_WB[1:0]
+@22
+main_test.uut.insDecodeStage.oSignExtended[31:0]
+main_test.uut.insDecodeStage.oins1511[4:0]
+main_test.uut.insDecodeStage.oins2016[4:0]
+@200
+-
+-DE/EXE
+@28
+main_test.uut.insDecodeStage.rstn
+main_test.uut.pipl_idex.clk
+main_test.uut.pipl_idex.hit
+@22
+main_test.uut.pipl_idex.i_ctlexec[3:0]
+main_test.uut.pipl_idex.o_ctlexec[3:0]
+@28
+main_test.uut.pipl_idex.i_ctlmem[2:0]
+main_test.uut.pipl_idex.o_ctlmem[2:0]
+main_test.uut.pipl_idex.i_ctlwb[1:0]
+main_test.uut.pipl_idex.o_ctlwb[1:0]
+@22
+main_test.uut.pipl_idex.iins_15_11[4:0]
+main_test.uut.pipl_idex.oins_15_11[4:0]
+main_test.uut.pipl_idex.iins_20_16[4:0]
+main_test.uut.pipl_idex.oins_20_16[4:0]
+main_test.uut.pipl_idex.inpc[31:0]
+main_test.uut.pipl_idex.onpc[31:0]
+main_test.uut.pipl_idex.iread_dat_1[31:0]
+main_test.uut.pipl_idex.oread_dat_1[31:0]
+main_test.uut.pipl_idex.iread_dat_2[31:0]
+main_test.uut.pipl_idex.oread_dat_2[31:0]
+main_test.uut.pipl_idex.isgn_extended[31:0]
+main_test.uut.pipl_idex.osgn_extended[31:0]
+@200
+-
+-Execute
+@28
+main_test.uut.executeStage.alu_ctrl[2:0]
+@22
+main_test.uut.executeStage.alu_operand_2[31:0]
+@28
+main_test.uut.executeStage.clk
+main_test.uut.executeStage.iSig_ALUOp[1:0]
+main_test.uut.executeStage.iSig_ALUSrc
+main_test.uut.executeStage.iSig_RegDst
+@22
+main_test.uut.executeStage.iadder_branch_result[31:0]
+main_test.uut.executeStage.o_adder_branch_result[31:0]
+main_test.uut.executeStage.iimm[31:0]
+main_test.uut.executeStage.iins1511[4:0]
+main_test.uut.executeStage.iins2016[4:0]
+main_test.uut.executeStage.imm_shifted[31:0]
+main_test.uut.executeStage.iregfile_read_1[31:0]
+main_test.uut.executeStage.iregfile_read_2[31:0]
+main_test.uut.executeStage.oALU_result[31:0]
+@28
+main_test.uut.executeStage.oALU_zero
+@22
+main_test.uut.executeStage.oreg_write_reg[4:0]
+main_test.uut.executeStage.oregfile_read_2[31:0]
+@200
+-
+-
+-
+-
+[pattern_trace] 1
+[pattern_trace] 0
