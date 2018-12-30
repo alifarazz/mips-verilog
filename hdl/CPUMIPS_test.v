@@ -29,7 +29,7 @@ module main_test;
       #10;
       rstn = 0;
       #10;
-      ii_miss_data = {32'hAAAAAAAA, 32'h00000020, 32'hBADA881E, 32'h00430820}; // , , , add $1, $2, $3
+      ii_miss_data = {32'h00000020, 32'h00000020, 32'h00000020, 32'h00430820}; // , , , add $1, $2, $3
       id_miss_data = {32'hDEADBEEF, 32'hDEADBEEF, 32'hDEADBEEF, 32'hDEADBEEF};
 
       // #1;

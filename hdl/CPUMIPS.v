@@ -109,65 +109,68 @@ module CPUMIPS(clk,
                .clk(clk),
                .rstn(rstn));
 
-   // InsDecode insDecodeStage(
-   //             .clk(clk),
-   //             .rstn(rstn),
-   //             .iins(decode_instruction),
-   //             .iSig_RegWrite(wb_SIGS_WB[0]),
-   //             .iWriteReg(wb_regwrite),
-   //             .iWriteData2Reg(wb_muxouput),
-   //             .oSig_WB(decode_SIGS_WB),
-   //             .oSig_MEM(decode_SIGS_MEM),
-   //             .oSig_EX(decode_SIGS_EXEC),
-   //             .oRegFileRead1(decode_regfile_data1),
-   //             .oRegFileRead2(decode_regfile_data2),
-   //             .oSignExtended(decode_imm),
-   //             .oins2016(decode_ins2016),
-   //             .oins1511(decode_ins1511)
-   //             );
+   assign wb_SIGS_WB[0] = 1;
+   assign wb_regwrite = 2;
+   assign wb_muxouput = 4;
+   InsDecode insDecodeStage(
+               .clk(clk),
+               .rstn(rstn),
+               .iins(decode_instruction),
+               .iSig_RegWrite(wb_SIGS_WB[0]),
+               .iWriteReg(wb_regwrite),
+               .iWriteData2Reg(wb_muxouput),
+               .oSig_WB(decode_SIGS_WB),
+               .oSig_MEM(decode_SIGS_MEM),
+               .oSig_EX(decode_SIGS_EXEC),
+               .oRegFileRead1(decode_regfile_data1),
+               .oRegFileRead2(decode_regfile_data2),
+               .oSignExtended(decode_imm),
+               .oins2016(decode_ins2016),
+               .oins1511(decode_ins1511)
+               );
 
-   // IDEX pipl_idex(
-   //             .i_ctlwb(decode_SIGS_WB),
-   //             .i_ctlmem(decode_SIGS_MEM),
-   //             .i_ctlexec(decode_SIGS_EXEC),
-   //             .inpc(decode_npc),
-   //             .iread_dat_1(decode_regfile_data1),
-   //             .iread_dat_2(decode_regfile_data2),
-   //             .isgn_extended(decode_imm),
-   //             .iins_20_16(decode_ins2016),
-   //             .iins_15_11(decode_ins1511),
-   //             .o_ctlwb(exec_SIGS_WB),
-   //             .o_ctlmem(exec_SIGS_MEM),
-   //             .o_ctlexec(exec_SIGS_EXEC),
-   //             .onpc(exec_npc),
-   //             .oread_dat_1(exec_regfile_read1),
-   //             .oread_dat_2(exec_regfile_read2),
-   //             .osgn_extended(exec_imm32),
-   //             .oins_20_16(exec_ins2016),
-   //             .oins_15_11(exec_ins1511),
-   //             .clk(clk),
-   //             .rstn(rstn),
-   //             .hit(IDEX_SIG_hit)
-   //             );
+   IDEX pipl_idex(
+               .i_ctlwb(decode_SIGS_WB),
+               .i_ctlmem(decode_SIGS_MEM),
+               .i_ctlexec(decode_SIGS_EXEC),
+               .inpc(decode_npc),
+               .iread_dat_1(decode_regfile_data1),
+               .iread_dat_2(decode_regfile_data2),
+               .isgn_extended(decode_imm),
+               .iins_20_16(decode_ins2016),
+               .iins_15_11(decode_ins1511),
+               .o_ctlwb(exec_SIGS_WB),
+               .o_ctlmem(exec_SIGS_MEM),
+               .o_ctlexec(exec_SIGS_EXEC),
+               .onpc(exec_npc),
+               .oread_dat_1(exec_regfile_read1),
+               .oread_dat_2(exec_regfile_read2),
+               .osgn_extended(exec_imm32),
+               .oins_20_16(exec_ins2016),
+               .oins_15_11(exec_ins1511),
+               .clk(clk),
+               .rstn(rstn),
+               .hit(IDEX_SIG_hit)
+               );
 
-   // Execute executeStage(
-   //             .clk(clk),
-   //             .rstn(rstn),
-   //             .iSig_RegDst(exec_SIGS_EXEC[0]),
-   //             .iSig_ALUOp(exec_SIGS_EXEC[3:2]),
-   //             .iSig_ALUSrc(exec_SIGS_EXEC[1]),
-   //             .iadder_branch_result(exec_npc),
-   //             .iregfile_read_1(exec_regfile_read1),
-   //             .iregfile_read_2(exec_regfile_read2),
-   //             .iimm(exec_imm32),
-   //             .iins2016(exec_ins2016),
-   //             .iins1511(exec_ins1511),
-   //             .o_adder_branch_result(exec_pc_adder_result),
-   //             .oALU_zero(exec_ALUzero),
-   //             .oALU_result(exec_ALU_result),
-   //             .oregfile_read_2(exec_regfile_read2),
-   //             .oreg_write_reg(exec_mux_regdest)
-   //             );
+   Execute executeStage(
+               .clk(clk),
+               .rstn(rstn),
+               .iSig_RegDst(exec_SIGS_EXEC[0]),
+               .iSig_ALUOp(exec_SIGS_EXEC[3:2]),
+               .iSig_ALUSrc(exec_SIGS_EXEC[1]),
+               .iadder_branch_result(exec_npc),
+               .iregfile_read_1(exec_regfile_read1),
+               .iregfile_read_2(exec_regfile_read2),
+               .iimm(exec_imm32),
+               .iins2016(exec_ins2016),
+               .iins1511(exec_ins1511),
+               .o_adder_branch_result(exec_pc_adder_result),
+               .oALU_zero(exec_ALUzero),
+               .oALU_result(exec_ALU_result),
+               .oregfile_read_2(exec_regfile_read2),
+               .oreg_write_reg(exec_mux_regdest)
+               );
 
    // EXMEM pipl_exmem(
    //             .i_ctlwb(exec_SIGS_WB),
