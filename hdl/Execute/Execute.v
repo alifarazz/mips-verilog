@@ -13,7 +13,6 @@ module Execute(
                o_adder_branch_result,
                oALU_zero,
                oALU_result,
-               oregfile_read_2,
                oreg_write_reg
                );
 
@@ -27,7 +26,7 @@ module Execute(
 
    output [31:0] o_adder_branch_result;
    output oALU_zero;
-   output [31:0] oALU_result, oregfile_read_2;
+   output [31:0] oALU_result;
    output [4:0] oreg_write_reg;
 
    input clk, rstn; // we dont use rstn
