@@ -1,21 +1,22 @@
 [*]
 [*] GTKWave Analyzer v3.3.97 (w)1999-2018 BSI
-[*] Mon Dec 31 07:34:30 2018
+[*] Tue Jan  1 20:51:34 2019
 [*]
 [dumpfile] "/home/luce/Storage/DaneshGah/term5_97_mehr/z_lab arch/class/github/hdl/main_test.vcd"
-[dumpfile_mtime] "Mon Dec 31 07:34:00 2018"
-[dumpfile_size] 23511
-[savefile] "/home/luce/Storage/DaneshGah/term5_97_mehr/z_lab arch/class/github/hdl/session.gtkw"
+[dumpfile_mtime] "Tue Jan  1 20:50:39 2019"
+[dumpfile_size] 95549
+[savefile] "/home/luce/Storage/DaneshGah/term5_97_mehr/z_lab arch/class/github/hdl/session4mem.gtkw"
 [timestart] 0
-[size] 1366 709
+[size] 1440 871
 [pos] -1 -1
-*-17.000000 201800 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-17.000000 201100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] main_test.
 [treeopen] main_test.uut.
-[sst_width] 217
+[treeopen] main_test.uut.memoryStage.
+[sst_width] 218
 [signals_width] 323
 [sst_expanded] 1
-[sst_vpaned_height] 183
+[sst_vpaned_height] 301
 @200
 -Fetch
 @28
@@ -38,11 +39,14 @@ main_test.uut.insFetchStage.pc[31:0]
 @28
 main_test.uut.insFetchStage.rstn
 main_test.uut.insFetchStage.insCache.counter[1:0]
-[color] 6
+[color] 7
 main_test.uut.insFetchStage.pcReg.counter
 @200
 -
 -Ftch/DE
+@28
+[color] 6
+main_test.uut.pipl_ifid.hit
 @22
 main_test.uut.pipl_ifid.Adder_in[31:0]
 main_test.uut.pipl_ifid.Instruction_in[31:0]
@@ -54,10 +58,14 @@ main_test.uut.pipl_ifid.Instruction_out[31:0]
 @28
 main_test.uut.insDecodeStage.clk
 main_test.uut.insDecodeStage.iSig_RegWrite
-@22
+@800022
 main_test.uut.insDecodeStage.iWriteData2Reg[31:0]
+@1001200
+-group_end
+@22
 main_test.uut.insDecodeStage.iWriteReg[4:0]
 main_test.uut.insDecodeStage.iins[31:0]
+main_test.uut.insDecodeStage.i_temp_npc[31:0]
 main_test.uut.insDecodeStage.oRegFileRead1[31:0]
 main_test.uut.insDecodeStage.oRegFileRead2[31:0]
 main_test.uut.insDecodeStage.oSig_EX[3:0]
@@ -68,17 +76,17 @@ main_test.uut.insDecodeStage.oSig_WB[1:0]
 main_test.uut.insDecodeStage.oSignExtended[31:0]
 main_test.uut.insDecodeStage.oins1511[4:0]
 main_test.uut.insDecodeStage.oins2016[4:0]
+main_test.uut.insDecodeStage.o_temp_npc[31:0]
 @200
 -
 -DE/EXE
 @28
 main_test.uut.insDecodeStage.rstn
 main_test.uut.pipl_idex.clk
+[color] 6
 main_test.uut.pipl_idex.hit
-@22
 main_test.uut.pipl_idex.i_ctlexec[3:0]
 main_test.uut.pipl_idex.o_ctlexec[3:0]
-@28
 main_test.uut.pipl_idex.i_ctlmem[2:0]
 main_test.uut.pipl_idex.o_ctlmem[2:0]
 main_test.uut.pipl_idex.i_ctlwb[1:0]
@@ -100,11 +108,8 @@ main_test.uut.pipl_idex.osgn_extended[31:0]
 -
 -Execute
 @28
-main_test.uut.executeStage.alu_ctrl[2:0]
-@22
-main_test.uut.executeStage.alu_operand_2[31:0]
-@28
 main_test.uut.executeStage.clk
+main_test.uut.executeStage.alu_ctrl[2:0]
 main_test.uut.executeStage.iSig_ALUOp[1:0]
 main_test.uut.executeStage.iSig_ALUSrc
 main_test.uut.executeStage.iSig_RegDst
@@ -112,11 +117,12 @@ main_test.uut.executeStage.iSig_RegDst
 main_test.uut.executeStage.iadder_branch_result[31:0]
 main_test.uut.executeStage.o_adder_branch_result[31:0]
 main_test.uut.executeStage.iimm[31:0]
+main_test.uut.executeStage.imm_shifted[31:0]
 main_test.uut.executeStage.iins1511[4:0]
 main_test.uut.executeStage.iins2016[4:0]
-main_test.uut.executeStage.imm_shifted[31:0]
-main_test.uut.executeStage.iregfile_read_1[31:0]
 main_test.uut.executeStage.iregfile_read_2[31:0]
+main_test.uut.executeStage.iregfile_read_1[31:0]
+main_test.uut.executeStage.alu_operand_2[31:0]
 main_test.uut.executeStage.oALU_result[31:0]
 @28
 main_test.uut.executeStage.oALU_zero
@@ -127,37 +133,111 @@ main_test.uut.executeStage.oreg_write_reg[4:0]
 -EX/MEM
 @28
 main_test.uut.pipl_exmem.clk
+[color] 6
 main_test.uut.pipl_exmem.hit
 main_test.uut.pipl_exmem.i_ctlmem[2:0]
-main_test.uut.pipl_exmem.i_ctlwb[1:0]
-@22
-main_test.uut.pipl_exmem.iadder_output[31:0]
-main_test.uut.pipl_exmem.ialu_output[31:0]
-@28
-main_test.uut.pipl_exmem.ialu_zero
-@22
-main_test.uut.pipl_exmem.imux_out[4:0]
-main_test.uut.pipl_exmem.iread_dat_2[31:0]
-@28
+@800028
 main_test.uut.pipl_exmem.o_ctlmem[2:0]
+@1001200
+-group_end
+@28
+main_test.uut.pipl_exmem.i_ctlwb[1:0]
 main_test.uut.pipl_exmem.o_ctlwb[1:0]
 @22
+main_test.uut.pipl_exmem.iadder_output[31:0]
 main_test.uut.pipl_exmem.oadder_output[31:0]
+main_test.uut.pipl_exmem.ialu_output[31:0]
 main_test.uut.pipl_exmem.oalu_output[31:0]
 @28
+main_test.uut.pipl_exmem.ialu_zero
 main_test.uut.pipl_exmem.oalu_zero
 @22
+main_test.uut.pipl_exmem.imux_out[4:0]
 main_test.uut.pipl_exmem.omux_out[4:0]
+main_test.uut.pipl_exmem.iread_dat_2[31:0]
 main_test.uut.pipl_exmem.oread_dat_2[31:0]
 @200
 -
--
--
--
--
-@201
--
+-MemoryStage
+@28
+main_test.uut.memoryStage.clk
+@22
+main_test.uut.memoryStage.iALUresult[31:0]
+@28
+main_test.uut.memoryStage.iALUzero
+main_test.uut.memoryStage.iSig_MemRead
+main_test.uut.memoryStage.iSig_MemWrite
+main_test.uut.memoryStage.iSig_branch
+@22
+main_test.uut.memoryStage.iread_from_ram[127:0]
+main_test.uut.memoryStage.iregfile_read_data2[31:0]
+main_test.uut.memoryStage.oALUresult[31:0]
+main_test.uut.memoryStage.oMemReadData[31:0]
+@28
+main_test.uut.memoryStage.oSig_PCSrc
+@22
+main_test.uut.memoryStage.oram_addr_wdata[31:0]
+main_test.uut.memoryStage.oram_data_wdata[31:0]
+@28
+main_test.uut.memoryStage.dcache.counter[1:0]
+[color] 2
+main_test.uut.memoryStage.ocacheHit
+@22
+main_test.uut.memoryStage.dcache.idata_write[31:0]
 @200
+-
+-MEM/WB
+@28
+main_test.uut.pipl_memwb.clk
+[color] 6
+main_test.uut.pipl_memwb.hit
+main_test.uut.pipl_memwb.i_ctlwb[1:0]
+main_test.uut.pipl_memwb.o_ctlwb[1:0]
+@22
+main_test.uut.pipl_memwb.ialu_result[31:0]
+main_test.uut.pipl_memwb.oalu_result[31:0]
+main_test.uut.pipl_memwb.iread_data_mem[31:0]
+main_test.uut.pipl_memwb.oread_data_mem[31:0]
+main_test.uut.pipl_memwb.ireg_write[4:0]
+main_test.uut.pipl_memwb.oreg_write[4:0]
+@200
+-
+-WriteBack
+@28
+main_test.uut.writeBackStage.clk
+main_test.uut.writeBackStage.iSig_MemtoReg
+main_test.uut.writeBackStage.iSig_regfile_write
+@22
+main_test.uut.writeBackStage.ialu_result[31:0]
+main_test.uut.writeBackStage.iread_from_ram[31:0]
+main_test.uut.writeBackStage.odata2write2regfile[31:0]
+@200
+-
+-
+-
+---MIPSCPU--
+@28
+main_test.clk
+@23
+main_test.id_miss_data[127:0]
+@22
+main_test.ii_miss_data[127:0]
+@28
+main_test.od_SIG_write
+@22
+main_test.od_addr[31:0]
+main_test.od_write_data[31:0]
+main_test.oi_addr[31:0]
+@28
+[color] 2
+main_test.uut.stall
+@200
+-
+-
+-
+-
+-
+-
 -
 -
 [pattern_trace] 1
