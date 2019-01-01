@@ -17,7 +17,7 @@ module PCReg(
          counter = 1;        
      end
 
-   always@(posedge clk)
+   always@(posedge clk or ihit)
      begin
       if (ihit)
          if (counter)

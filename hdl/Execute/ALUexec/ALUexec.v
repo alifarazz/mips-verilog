@@ -1,6 +1,7 @@
 `timescale 1ns / 1ps
 
-module ALUexec(iA,
+module ALUexec(clk,
+               iA,
                iB,
                iALUctrl,
                res,
@@ -8,12 +9,14 @@ module ALUexec(iA,
                   
     input [31:0] iA, iB;
     input [2:0] iALUctrl;
-    output zero;
+    output reg zero;
     output reg [31:0] res;
+
+    input clk;
     
-    assign zero = !(iA ^ iB);
-    
-    always @(iA or iB or iALUctrl) begin
+    always @(posedge clk) begin
+        zero = !(iA ^ iB);
+
         case(iALUctrl)
         3'b010: res = iA + iB;
         3'b110: res = iA - iB;

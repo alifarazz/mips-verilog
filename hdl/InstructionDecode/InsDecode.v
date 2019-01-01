@@ -5,6 +5,7 @@ module InsDecode(
                iSig_RegWrite,
                iWriteReg,
                iWriteData2Reg,
+               i_temp_npc,
                oSig_WB,
                oSig_MEM,
                oSig_EX,
@@ -12,13 +13,15 @@ module InsDecode(
                oRegFileRead2,
                oSignExtended,
                oins2016,
-               oins1511
+               oins1511,
+               o_temp_npc
                );
 
    input [31:0] iins;
    input iSig_RegWrite;
    input [4:0] iWriteReg;
    input [31:0] iWriteData2Reg;
+   input [31:0] i_temp_npc;
    
    output [1:0] oSig_WB;
    output [2:0] oSig_MEM;
@@ -27,7 +30,13 @@ module InsDecode(
    output [31:0] oSignExtended;
    output [4:0] oins2016, oins1511;
 
+   output reg [31:0] o_temp_npc;
+
    input clk, rstn; // we dont use rstn
+
+   always @(posedge clk) begin
+      o_temp_npc =  i_temp_npc;
+   end
 
    ControlUnit controlUnit(.opcode(iins[31:26]),
                            .RegDst(oSig_EX[0]),

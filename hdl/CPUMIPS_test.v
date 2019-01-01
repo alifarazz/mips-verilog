@@ -11,6 +11,7 @@ module main_test;
    wire [31:0] oi_addr,
                od_addr,
                od_write_data;
+   wire od_SIG_write;
 
    integer    i;
 
@@ -21,7 +22,8 @@ module main_test;
                id_miss_data,
                oi_addr,
                od_addr,
-               od_write_data
+               od_write_data,
+               od_SIG_write
                );
 
    initial begin
@@ -29,7 +31,7 @@ module main_test;
       #10;
       rstn = 0;
       #10;
-      ii_miss_data = {32'h00000020, 32'h00000020, 32'h00000020, 32'h00430820}; // , , , add $1, $2, $3
+      ii_miss_data = {32'h00000020, 32'h00000020, 32'h00000020, 32'h00430820}; // nop, nop, nop, add $1, $2, $3
       id_miss_data = {32'hDEADBEEF, 32'hDEADBEEF, 32'hDEADBEEF, 32'hDEADBEEF};
 
       // #1;

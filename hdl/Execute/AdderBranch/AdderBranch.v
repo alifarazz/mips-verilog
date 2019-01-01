@@ -1,11 +1,15 @@
 `timescale 1ns / 1ps
 
-module AdderBranch(pc,
+module AdderBranch(clk,
+                    pc,
                    imm32,
                    pcAddResult);
+   input clk;
    input [31:0] pc, imm32;
-   output [31:0] pcAddResult;
+   output reg [31:0] pcAddResult;
    
-   assign pcAddResult = pc + imm32;
+   always @(posedge clk) begin
+      pcAddResult = pc + imm32;
+   end
    
 endmodule // main

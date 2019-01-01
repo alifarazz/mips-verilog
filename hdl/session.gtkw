@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.97 (w)1999-2018 BSI
-[*] Sun Dec 30 21:51:36 2018
+[*] Mon Dec 31 07:34:30 2018
 [*]
 [dumpfile] "/home/luce/Storage/DaneshGah/term5_97_mehr/z_lab arch/class/github/hdl/main_test.vcd"
-[dumpfile_mtime] "Sun Dec 30 21:44:52 2018"
-[dumpfile_size] 22306
+[dumpfile_mtime] "Mon Dec 31 07:34:00 2018"
+[dumpfile_size] 23511
 [savefile] "/home/luce/Storage/DaneshGah/term5_97_mehr/z_lab arch/class/github/hdl/session.gtkw"
 [timestart] 0
 [size] 1366 709
 [pos] -1 -1
-*-17.000000 200000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-17.000000 201800 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] main_test.
 [treeopen] main_test.uut.
 [sst_width] 217
@@ -122,10 +122,42 @@ main_test.uut.executeStage.oALU_result[31:0]
 main_test.uut.executeStage.oALU_zero
 @22
 main_test.uut.executeStage.oreg_write_reg[4:0]
-main_test.uut.executeStage.oregfile_read_2[31:0]
+@200
+-
+-EX/MEM
+@28
+main_test.uut.pipl_exmem.clk
+main_test.uut.pipl_exmem.hit
+main_test.uut.pipl_exmem.i_ctlmem[2:0]
+main_test.uut.pipl_exmem.i_ctlwb[1:0]
+@22
+main_test.uut.pipl_exmem.iadder_output[31:0]
+main_test.uut.pipl_exmem.ialu_output[31:0]
+@28
+main_test.uut.pipl_exmem.ialu_zero
+@22
+main_test.uut.pipl_exmem.imux_out[4:0]
+main_test.uut.pipl_exmem.iread_dat_2[31:0]
+@28
+main_test.uut.pipl_exmem.o_ctlmem[2:0]
+main_test.uut.pipl_exmem.o_ctlwb[1:0]
+@22
+main_test.uut.pipl_exmem.oadder_output[31:0]
+main_test.uut.pipl_exmem.oalu_output[31:0]
+@28
+main_test.uut.pipl_exmem.oalu_zero
+@22
+main_test.uut.pipl_exmem.omux_out[4:0]
+main_test.uut.pipl_exmem.oread_dat_2[31:0]
 @200
 -
 -
+-
+-
+-
+@201
+-
+@200
 -
 -
 [pattern_trace] 1

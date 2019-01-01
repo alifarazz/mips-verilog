@@ -1,6 +1,4 @@
-module Execute(
-               clk,
-               rstn,
+module Execute(clk,
                iSig_RegDst,
                iSig_ALUOp,
                iSig_ALUSrc,
@@ -13,9 +11,11 @@ module Execute(
                o_adder_branch_result,
                oALU_zero,
                oALU_result,
-               oreg_write_reg
+               oreg_write_reg,
+               otemp_regfile_2
                );
 
+   input clk;
    input iSig_RegDst;
    input [1:0] iSig_ALUOp;
    input iSig_ALUSrc;
@@ -28,28 +28,35 @@ module Execute(
    output oALU_zero;
    output [31:0] oALU_result;
    output [4:0] oreg_write_reg;
-
-   input clk, rstn; // we dont use rstn
+   output reg [31:0] otemp_regfile_2;
 
    wire [31:0] alu_operand_2;
    wire [2:0] alu_ctrl;
    wire [31:0] imm_shifted;
+
+   always @(posedge clk) begin
+      otemp_regfile_2 = iregfile_read_2;
+   end
  
-   MuxRegDest muxRegDest(.rt(iins2016),
+   MuxRegDest muxRegDest(.clk(clk),
+                         .rt(iins2016),
                          .rd(iins1511),
                          .RegDest(iSig_RegDst),
                          .rw(oreg_write_reg));
 
-   MuxALUSrc muxALUSrc(.B(iregfile_read_2),
+   MuxALUSrc muxALUSrc(
+                       .B(iregfile_read_2),
                        .imm32(iimm),
                        .ALUSrc(iSig_ALUSrc),
                        .toAdder(alu_operand_2));
 
-   ALUctrlUnit aLUctrlUnit(.ifunct(iimm[5:0]),
-                         .iALUOp(iSig_ALUOp),
-                         .oALUctrl(alu_ctrl));
+   ALUctrlUnit aLUctrlUnit(
+                           .ifunct(iimm[5:0]),
+                           .iALUOp(iSig_ALUOp),
+                           .oALUctrl(alu_ctrl));
 
-   ALUexec aLUexec(.iA(iregfile_read_1),
+   ALUexec aLUexec(.clk(clk),
+                   .iA(iregfile_read_1),
                    .iB(alu_operand_2),
                    .iALUctrl(alu_ctrl),
                    .res(oALU_result),
@@ -57,7 +64,8 @@ module Execute(
 
    AdderShift adderShift(.in(iimm), .out(imm_shifted));
 
-   AdderBranch  adderBranch(.pc(iadder_branch_result),
+   AdderBranch  adderBranch(.clk(clk),
+                            .pc(iadder_branch_result),
                             .imm32(imm_shifted),
                             .pcAddResult(o_adder_branch_result));
 endmodule // main

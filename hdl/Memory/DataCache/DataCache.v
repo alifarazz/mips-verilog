@@ -22,7 +22,6 @@ module DataCache(clk,
    output reg [31:0] omem_write_data;  // W: data to write to RAM, in omem_addr
    output reg [31:0] odata_read;  // R: data read from RAM, using iaddr
    
-
    reg [154:0] content[3:0];
    reg [1:0] counter;
 
@@ -48,22 +47,19 @@ module DataCache(clk,
         if (content[iaddr[5:4]][0] == 1'b1 &&
             content[iaddr[5:4]][154:129] == iaddr[31:6]) begin
           case (iaddr[3:2])
-            2'b00 : content[iaddr[5:4]][32:1] = idata_write;
-            2'b01 : content[iaddr[5:4]][64:33] = idata_write;
-            2'b10 : content[iaddr[5:4]][96:65] = idata_write; 
+            2'b00 : content[iaddr[5:4]][32:1]   = idata_write;
+            2'b01 : content[iaddr[5:4]][64:33]  = idata_write;
+            2'b10 : content[iaddr[5:4]][96:65]  = idata_write; 
             2'b11 : content[iaddr[5:4]][128:97] = idata_write;
           endcase
           ohit = 1;
-        end // if tag
-        else 
+        end else  // if tag
           ohit = 0;
       end // if iSigMemWrite
-      
-      if (iSigMemRead) 
-      begin
+      // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      if (iSigMemRead) begin
          if (content[iaddr[5:4]][0] == 1'b1 &&
-            iaddr[31:6] == content[iaddr[5:4]][154:129]) // hit?
-         begin 
+            iaddr[31:6] == content[iaddr[5:4]][154:129]) begin // hit? 
             case (iaddr[3:2])
                2'b00 : odata_read = content[iaddr[5:4]][32:1];
                2'b01 : odata_read = content[iaddr[5:4]][64:33];
@@ -71,31 +67,26 @@ module DataCache(clk,
                2'b11 : odata_read = content[iaddr[5:4]][128:97];
             endcase
             ohit = 1;
-         end
-         else
-         begin // miss
+         end else begin  // miss
             ohit = 0;
-            if (counter == 3)
-            begin
+            if (counter == 3) begin
                content[iaddr[5:4]] = {iaddr[31:6],
                                       imem_in,
                                       1'b1};
                counter = 0;
                case (iaddr[3:2])
-                  2'b00 : odata_read = content[imem_in[5:4]][32:1];
-                  2'b01 : odata_read = content[imem_in[5:4]][64:33];
-                  2'b10 : odata_read = content[imem_in[5:4]][96:65];
-                  2'b11 : odata_read = content[imem_in[5:4]][128:97];
+                  2'b00 : odata_read = imem_in[31:0];
+                  2'b01 : odata_read = imem_in[63:32];
+                  2'b10 : odata_read = imem_in[95:64];
+                  2'b11 : odata_read = imem_in[127:96];
                endcase
                ohit = 1;
-            end
-            else
-            begin
+            end else begin
                counter = counter + 1;
-            end         // if counter
-         end         // if miss
-      end // if iSigMemRead
-     end          // always
+            end  // if counter
+         end  // if miss
+      end  // if iSigMemRead
+   end  // always
 
 
 endmodule // main

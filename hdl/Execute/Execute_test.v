@@ -3,7 +3,6 @@
 module main_test;
 
    // Inputs
-   reg clk, resetn=1;
    reg iSig_RegDst;
    reg [1:0] iSig_ALUOp;
    reg iSig_ALUSrc;
@@ -22,8 +21,6 @@ module main_test;
 
    // Instantiate the Unit Under Test (UUT)
    Execute uut(
-         clk,
-         rstn,
          iSig_RegDst,
          iSig_ALUOp,
          iSig_ALUSrc,
