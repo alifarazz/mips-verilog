@@ -22,7 +22,7 @@ PipelinesSRCS = $(patsubst %, Pipeline/%, $(Pipelines))
 
 SRCS = $(wildcard *.v) $(InsFetchSRCS) $(PipelinesSRCS) $(InsDecodeSRCS) $(ExecuteSRCS) $(MemorySRCS) $(WriteBackSRCS)
 
-.PHONY: default all $(TARGET) clean run
+.PHONY: default all $(TARGET) clean run session
 
 default: $(TARGET)
 
@@ -32,10 +32,11 @@ $(TARGET):
 	iverilog $(SRCS) -o $(TARGET).o
 	vvp $(TARGET).o
 
-
 run: $(TARGET)
 	$(ANALAYZER) $(wildcard *.vcd)
 
+session: $(TARGET)
+	$(ANALAYZER) session.gtkw
 
 clean:
 	rm *.vcd
