@@ -6,6 +6,7 @@ module InsFetch(
                obranch_adder,
                oins,
                ocacheHit,
+               oi_addr,
                clk,
                rstn);
 
@@ -15,12 +16,17 @@ module InsFetch(
    input iupdatepc;
 
    output [31:0] oins, obranch_adder;
+   output reg [31:0] oi_addr;
    output ocacheHit;
 
    input clk, rstn;
 
    wire [31:0] pcOut;
    wire [31:0] pc;
+
+   always @(posedge clk) begin 
+      oi_addr = pcOut;
+   end
 
    PCReg pcReg(pcOut, pc, iupdatepc, clk, rstn);
    

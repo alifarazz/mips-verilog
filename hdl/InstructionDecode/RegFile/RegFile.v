@@ -20,6 +20,8 @@ module RegFile(rs,
    integer i;
    
 initial begin
+  A = 0;
+  B = 0;
 	for (i = 0; i < 32; i = i + 1)
       content[i] = i;
 end
@@ -28,8 +30,11 @@ end
       if (regwrite) begin
          if (rd != 0)
             content[rd] = writedata;
-      A = content[rs];
-      B = content[rt];
+         A = content[rs];
+         B = content[rt];
+      end else begin
+         A = content[rs];
+         B = content[rt];
       end
    end
     

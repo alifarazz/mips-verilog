@@ -1,2 +1,2 @@
 InstructionFetch/InsCache.v:30: add 'iaddr' to always block trigger conditions to force the cache to activate each cycle.
-CPUMIPS.v:189: the executeStage finish it's job at negedge clk, so I'll force the pipeline reg to update at posedge
+InstructionFetch/PCReg/PCReg.v:30: add 'ihit' to always block trigger conditions to force the pcreg to update each time it's singal(PCSrc) is ready.

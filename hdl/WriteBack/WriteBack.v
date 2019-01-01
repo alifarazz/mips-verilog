@@ -14,7 +14,7 @@ module WriteBack(
 
    output [31:0] odata2write2regfile;
 
-   
+   // DataBranch is a mux
    DataBranch dataBranch(.MemRead(iread_from_ram),
                .Addr(ialu_result),
                .SigMemToReg(iSig_MemtoReg),

@@ -28,14 +28,16 @@ module InsDecode(
    output [3:0] oSig_EX;
    output [31:0] oRegFileRead1, oRegFileRead2;
    output [31:0] oSignExtended;
-   output [4:0] oins2016, oins1511;
 
+   output reg [4:0] oins2016, oins1511;
    output reg [31:0] o_temp_npc;
 
    input clk, rstn; // we dont use rstn
 
    always @(posedge clk) begin
-      o_temp_npc =  i_temp_npc;
+      o_temp_npc = i_temp_npc;
+      oins2016 = iins[20:16];
+      oins1511 = iins[15:11];
    end
 
    ControlUnit controlUnit(.opcode(iins[31:26]),
@@ -59,8 +61,6 @@ module InsDecode(
    SignExtend signExtend(.in(iins[15:0]),
                         .out(oSignExtended));
 
-   assign oins2016 = iins[20:16];
-   assign oins1511 = iins[15:11];
 
 
 endmodule // main

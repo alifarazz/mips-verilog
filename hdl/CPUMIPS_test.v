@@ -31,7 +31,27 @@ module main_test;
       #10;
       rstn = 0;
       #10;
-      ii_miss_data = {32'h00000020, 32'h00000020, 32'h00000020, 32'h00430820}; // nop, nop, nop, add $1, $2, $3
+      // ii_miss_data = {
+      //                 32'h00210820,  // add $1, $1, $1
+      //                 32'h00000020,  // nop
+      //                 32'h00000020,  // nop
+      //                 32'h00430820   // add $1, $2, $3
+      //                 };
+      // ii_miss_data = {
+      //                 32'h00210820,  // add $1, $1, $1
+      //                 32'h00000020,  // nop
+      //                 32'h00000020,  // nop
+      //                 // 32'h0043082a   // slt $1, $2, $3
+      //                 32'h0042082a   // slt $1, $2, $2
+      //                 };
+
+      ii_miss_data = {
+                      32'h00210820,  // add $1, $1, $1
+                      32'h00000020,  // nop
+                      32'h00000020,  // nop
+                      32'hac620008   // sw $2, 8($3)
+                      // 32'h8c610008   // lw $1,8($3)
+                      }; 
       id_miss_data = {32'hDEADBEEF, 32'hDEADBEEF, 32'hDEADBEEF, 32'hDEADBEEF};
 
       // #1;
@@ -39,7 +59,7 @@ module main_test;
 
    initial begin
       clk = 0;
-      for (i = 0; i < 50; i = i + 1)
+      for (i = 0; i < 250; i = i + 1)
 	#25 clk = ~clk;
    end
 

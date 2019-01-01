@@ -31,7 +31,7 @@ module DataCache(clk,
       omem_addr = 0;
       odata_read = 0;
       omem_write_data = 0;
-      ohit = 0;
+      ohit = 1;
       counter = 0;
       for (i = 0; i < 4; i = i + 1) begin
          content[i] = 0;
@@ -44,17 +44,19 @@ module DataCache(clk,
         omem_write_data = idata_write;
         omem_addr = iaddr;
         // update cache
-        if (content[iaddr[5:4]][0] == 1'b1 &&
+         if (content[iaddr[5:4]][0] == 1'b1 &&
             content[iaddr[5:4]][154:129] == iaddr[31:6]) begin
-          case (iaddr[3:2])
-            2'b00 : content[iaddr[5:4]][32:1]   = idata_write;
-            2'b01 : content[iaddr[5:4]][64:33]  = idata_write;
-            2'b10 : content[iaddr[5:4]][96:65]  = idata_write; 
-            2'b11 : content[iaddr[5:4]][128:97] = idata_write;
-          endcase
-          ohit = 1;
-        end else  // if tag
-          ohit = 0;
+            case (iaddr[3:2])
+               2'b00 : content[iaddr[5:4]][32:1]   = idata_write;
+               2'b01 : content[iaddr[5:4]][64:33]  = idata_write;
+               2'b10 : content[iaddr[5:4]][96:65]  = idata_write; 
+               2'b11 : content[iaddr[5:4]][128:97] = idata_write;
+            endcase
+         end
+          // ohit = 1;
+        // end else  // if tag
+        //   ohit = 0;
+
       end // if iSigMemWrite
       // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       if (iSigMemRead) begin

@@ -54,11 +54,14 @@ module CPUMIPS(clk,
    wire [31:0] exec_ALU_result;
    wire [4:0] exec_mux_regdest;
 
+   wire [1:0] exec_temp_SIGS_WB;
+   wire [2:0] exec_temp_SIGS_MEM;
+
    // pipeline EXMEM
    wire EXMEM_SIG_hit;
 
    // memory Stage
-   wire [1:0] memstg_SIGS_WB;
+   wire [1:0] memstg_SIGS_WB, memstg_temp_SIGS_WB;
    wire [2:0] memstg_SIGS_MEM;
    wire memstg_ALUzero;
    wire [31:0] memstg_ALU_result;
@@ -83,7 +86,7 @@ module CPUMIPS(clk,
    // for pipeline stalls
    wire stall, inscache_miss, datacache_miss;
 
-   assign stall = inscache_miss | datacache_miss;
+   assign stall = inscache_miss & datacache_miss; // if stall==1 the stall the whole pipeline
    assign IFID_SIG_hit = stall;
    assign IDEX_SIG_hit = stall;
    assign EXMEM_SIG_hit = stall;
@@ -101,6 +104,7 @@ module CPUMIPS(clk,
                .obranch_adder(fetch_Adder_PC_output),  // adder's output of branch
                .oins(fetch_instruction),  // fetched instruction
                .ocacheHit(inscache_miss),
+               .oi_addr(oi_addr),
                .clk(clk),
                .rstn(rstn));
 
@@ -170,16 +174,20 @@ module CPUMIPS(clk,
                .iimm(exec_imm32),
                .iins2016(exec_ins2016),
                .iins1511(exec_ins1511),
+               .iSIGS_MEM(exec_SIGS_MEM),
+               .iSIGS_WB(exec_SIGS_WB),
                .o_adder_branch_result(exec_pc_adder_result),
                .oALU_zero(exec_ALUzero),
                .oALU_result(exec_ALU_result),
                .oreg_write_reg(exec_mux_regdest),
-               .otemp_regfile_2(memstg_temp_regfile_2)
+               .otemp_regfile_2(memstg_temp_regfile_2),
+               .oSIGS_MEM(exec_temp_SIGS_MEM),
+               .oSIGS_WB(exec_temp_SIGS_WB)
                );
 
    EXMEM pipl_exmem(
-               .i_ctlwb(exec_SIGS_WB),
-               .i_ctlmem(exec_SIGS_MEM),
+               .i_ctlwb(exec_temp_SIGS_WB),
+               .i_ctlmem(exec_temp_SIGS_MEM),
                .iadder_output(exec_pc_adder_result),
                .ialu_zero(exec_ALUzero),
                .ialu_output(exec_ALU_result),
@@ -200,6 +208,7 @@ module CPUMIPS(clk,
    MemoryStage memoryStage(
                .clk(clk),
                .rstn(rstn),
+               .iSIGS_WB(memstg_SIGS_WB),
                .iSig_branch(memstg_SIGS_MEM[0]),
                .iSig_MemWrite(memstg_SIGS_MEM[1]),
                .iSig_MemRead(memstg_SIGS_MEM[2]),
@@ -212,12 +221,13 @@ module CPUMIPS(clk,
                .ocacheHit(datacache_miss),
                .oram_addr_wdata(od_addr), // address of data to write/read to memory
                .oram_data_wdata(od_write_data), // the data to write to memory
-               .oSig_PCSrc(memstg_SIG_PCSrc)
+               .oSig_PCSrc(memstg_SIG_PCSrc),
+               .oSIGS_WB(memstg_temp_SIGS_WB)
                );
-   assign od_SIG_write = memstg_SIGS_MEM[1]; // signal memory to allow write 
+   assign od_SIG_write = memstg_SIGS_MEM[1]; // signal memory to allow write-to-ram
 
    MEMWB pipl_memwb(
-               .i_ctlwb(memstg_SIGS_WB),
+               .i_ctlwb(memstg_temp_SIGS_WB),
                .iread_data_mem(memstg_MemReadData),
                .ialu_result(memstg_temp_ALU_result),
                .ireg_write(memstg_mux_regdest),
@@ -241,4 +251,3 @@ module CPUMIPS(clk,
                );
 
 endmodule // main
- 
